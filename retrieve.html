@@ -170,39 +170,42 @@
     <img class="mb-4" src="logo.png" alt="" width="60%"
          height="60%">
     <h1 class="h3 mb-3 fw-normal">Orbit Company</h1>
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header">
             Registered Users
         </div>
         <div class="card-body">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!--@foreach($tasks_list as $task)-->
-                <?php foreach($json_pss['users'] as $record){ ?>
-                <tr>
-                    <th scope="row"><?php echo $record["id"]; ?></th>
-                    <td><?php echo $record["name"]; ?></td>
-                    <td><?php echo $record["phone"]; ?></td>
-                </tr>
-                <?php } ?>
-                <!--@endforeach-->
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--@foreach($tasks_list as $task)-->
+                    <?php foreach($json_pss['users'] as $record){ ?>
+                    <tr>
+                        <th><?php echo $record["id"]; ?></th>
+                        <td><?php echo $record["name"]; ?></td>
+                        <td><?php echo $record["phone"]; ?></td>
+                        <td><a href='delete.php?id=<?php echo $record["id"]?>' class="btn btn-pink-moon">Delete</a></td>
+                    </tr>
+                    <?php } ?>
+                    <!--@endforeach-->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
-
+    <a href="index.php" class="float">
+        <i class="fa fa-solid fa-user-plus my-float"></i>
+    </a>
 </main>
-<a href="index.php" class="float">
-    <i class="fa fa-solid fa-user-plus my-float"></i>
-</a>
+
 
 <!--jquery-->
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"
@@ -228,6 +231,9 @@
 
         case 'insert_error':
             toastr.error("Something went wrong!");
+            break;
+        case 'delete_success':
+            toastr.error("Record deleted successfully");
             break;
         case 'connection_failed':
             toastr.error("Database connection failed!");
