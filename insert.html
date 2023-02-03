@@ -134,6 +134,10 @@
             background: #fc4a1a; /* fallback for old browsers */
         }
 
+        .toast-success {
+            background: #4e54c8; /* fallback for old browsers */
+        }
+
         .float {
             position: fixed;
             width: 60px;
@@ -171,15 +175,15 @@
         <img class="mb-4" src="logo.png" alt="" width="60%"
              height="60%">
         <h1 class="h3 mb-3 fw-normal">Orbit Company</h1>
-
+        <input type="hidden" id="user_id" name="user_id" value="<?php if ($user_id != null) echo $user_id; ?>">
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingInput" name="name" placeholder="name@example.com"
-            >
+                   value="<?php echo ($user_name != '') ? $user_name : ''; ?>" required>
             <label for="floatingInput">Name</label>
         </div>
         <div class="form-floating">
             <input type="number" class="form-control" id="floatingPassword" name="phone" placeholder="Password"
-            >
+                   value="<?php echo ($user_contact != '') ? $user_contact : ''; ?>" maxlength="8" required>
             <label for="floatingPassword">Phone</label>
         </div>
 
@@ -199,8 +203,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script>
-    var message = '<?php echo $_SESSION["message"] ?>';
-
+    var message = '<?php echo $_SESSION["message"]; ?>';
     switch (message) {
         case 'empty_inputs':
             toastr.warning("Please enter required fields!");
@@ -219,6 +222,12 @@
             break;
         case 'connection_failed':
             toastr.error("Database connection failed!");
+            break;
+        case 'user_found_failed':
+            toastr.error("Invalid user id!");
+            break;
+        case 'user_found_success':
+            toastr.warning("Edit your information here...");
             break;
         default:
             toastr.success(message);

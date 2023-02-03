@@ -134,6 +134,10 @@
             background: #fc4a1a; /* fallback for old browsers */
         }
 
+        .toast-success {
+            background: #4e54c8; /* fallback for old browsers */
+        }
+
         .float {
             position: fixed;
             width: 60px;
@@ -176,7 +180,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-sm">
+                <table class="table table-hover">
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
@@ -192,7 +196,11 @@
                         <th><?php echo $record["id"]; ?></th>
                         <td><?php echo $record["name"]; ?></td>
                         <td><?php echo $record["phone"]; ?></td>
-                        <td><a href='delete.php?id=<?php echo $record["id"]?>' class="btn btn-pink-moon">Delete</a></td>
+                        <td>
+                            <a href='delete.php?id=<?php echo $record["id"]?>' class="btn btn-pink-moon">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
                     </tr>
                     <?php } ?>
                     <!--@endforeach-->
@@ -239,9 +247,17 @@
             toastr.error("Database connection failed!");
             break;
         default:
-            toastr.success(message);
+        //toastr.success(message);
     }
-
+</script>
+<script>
+    $(function () {
+        $("table tr").click(function () {
+            if (this.cells[0].innerHTML >= 0) {
+                window.location.replace("http://localhost/orbit/index.php?id=" + this.cells[0].innerHTML);
+            }
+        });
+    });
 </script>
 </body>
 </html>
