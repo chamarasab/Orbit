@@ -15,8 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($result) {
                 $_SESSION["message"] = "insert_success";
-                //sleep(2);
-                //header('location:dashboard.php');
+                sleep(2);
+                session_reset();
+                header('location:retrieve.php');
             } else {
                 $_SESSION["message"] = "insert_error";
             }
