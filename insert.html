@@ -171,7 +171,7 @@
 <body class="text-center">
 
 <main class="form-signin w-100 m-auto">
-    <form method="post" action="index.php">
+    <form method="post" action="<?php echo ($user_id != '') ? 'update.php' : 'index.php'; ?>">
         <img class="mb-4" src="logo.png" alt="" width="60%"
              height="60%">
         <h1 class="h3 mb-3 fw-normal">Orbit Company</h1>
@@ -188,7 +188,7 @@
         </div>
 
         <!--<button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>-->
-        <button class="w-100 btn btn-lg btn-orange-moon btn-rounded" type="submit">Create</button>
+        <button class="w-100 btn btn-lg btn-orange-moon btn-rounded" type="submit"><?php echo ($user_id != '') ? 'Update' : 'Create'; ?></button>
 
     </form>
 </main>
